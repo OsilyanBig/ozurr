@@ -20,6 +20,8 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            /* Mobilde sayfa kenarlarından taşma olmaması için */
+            padding: 20px 0; 
         }
 
         /* Arka plan yıldız ve ışıltı efektleri */
@@ -42,7 +44,7 @@
             z-index: 2;
             width: 90%;
             max-width: 600px;
-            margin: 40px auto;
+            margin: 0 auto;
             perspective: 1000px;
         }
 
@@ -127,16 +129,45 @@
 
         /* Mobil Cihazlar İçin Ayarlamalar */
         @media (max-width: 480px) {
+            .container {
+                width: 95%; /* Ekrana biraz daha yaklaşması için genişliği artırdık */
+            }
+            
             .letter-paper {
-                padding: 40px 20px;
-                background-size: 100% 2rem;
+                /* Mobilde dönme efekti taşmaya sebep olmasın diye sıfırladık */
+                transform: rotate(0deg); 
+                /* Kenar boşluklarını azalttık, böylece yazı sıkışmayacak */
+                padding: 35px 20px; 
+                /* Çizgilerin font boyutuyla senkronize kalması için oranları eşitledik */
+                background-size: 100% 2rem; 
             }
+            
+            .letter-paper:hover {
+                transform: scale(1.01);
+            }
+
+            .letter-paper::before {
+                /* İçteki kesikli çizgi süsünü mobilde biraz daha kenara çektik */
+                top: 6px;
+                bottom: 6px;
+                left: 6px;
+                right: 6px;
+            }
+
             .heading {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+                margin-bottom: 1.5rem;
             }
+
             .content {
-                font-size: 1rem;
-                line-height: 2rem;
+                font-size: 1.05rem;
+                /* background-size değeri ile line-height aynı olmalı ki satırlar kaymasın */
+                line-height: 2rem; 
+                text-align: left; /* Mobilde iki yana yaslama bazen çirkin boşluklar yaratır, sola çektik */
+            }
+            
+            .wax-seal {
+                margin: 30px auto 0 auto;
             }
         }
     </style>
