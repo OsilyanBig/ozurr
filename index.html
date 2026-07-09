@@ -18,9 +18,10 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            /* Arka planın mobilde de sabit kalması ve scroll yapıldığında bozulmaması için */
+            background-attachment: fixed; 
             position: relative;
-            /* Mobilde sayfa kenarlarından taşma olmaması için */
+            /* Mobilde mektubun üstten ve alttan ekrana değmemesi için */
             padding: 20px 0; 
         }
 
@@ -28,8 +29,7 @@
         body::before {
             content: "";
             position: absolute;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: 
                 radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
                 radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
@@ -37,6 +37,8 @@
             background-position: 0 0, 40px 60px;
             opacity: 0.4;
             z-index: 1;
+            /* Arka planın scroll ile kaymaması için */
+            position: fixed; 
         }
 
         .container {
@@ -44,7 +46,7 @@
             z-index: 2;
             width: 90%;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto; /* Yatayda ortalamak için */
             perspective: 1000px;
         }
 
@@ -59,6 +61,7 @@
             padding: 50px 40px;
             position: relative;
             border: 1px solid #dcd6cd;
+            /* Varsayılan olarak hafif dönük */
             transform: rotate(-1deg);
             transition: transform 0.5s ease;
         }
@@ -127,23 +130,26 @@
             border: 2px solid #8f1d1d;
         }
 
-        /* Mobil Cihazlar İçin Ayarlamalar */
+        /* 📱 MOBİL CİHAZLAR İÇİN GÜNCELLENMİŞ AYARLAR 📱 */
         @media (max-width: 480px) {
             .container {
-                width: 95%; /* Ekrana biraz daha yaklaşması için genişliği artırdık */
+                /* ANA DEĞİŞİKLİK BURADA: Genişliği %85'e düşürdük. 
+                   Bu sayede mektubun hem solunda hem sağında %7.5'lik arka plan boşluğu kalacak. */
+                width: 85%; 
+                margin: 0 auto; /* Yatayda tam ortalamak için */
             }
             
             .letter-paper {
-                /* Mobilde dönme efekti taşmaya sebep olmasın diye sıfırladık */
-                transform: rotate(0deg); 
-                /* Kenar boşluklarını azalttık, böylece yazı sıkışmayacak */
-                padding: 35px 20px; 
+                /* Kenar boşlukları ve dönme efekti mobilde de var. 
+                   Arka planı görebilmek için mektubu küçültmüş olduk. */
+                transform: rotate(-1deg); 
+                padding: 30px 15px; /* İç boşluğu daralttık ki metin çok sıkışmasın */
                 /* Çizgilerin font boyutuyla senkronize kalması için oranları eşitledik */
-                background-size: 100% 2rem; 
+                background-size: 100% 1.8rem; 
             }
             
             .letter-paper:hover {
-                transform: scale(1.01);
+                transform: rotate(0deg) scale(1.01);
             }
 
             .letter-paper::before {
@@ -155,19 +161,21 @@
             }
 
             .heading {
-                font-size: 1.4rem;
-                margin-bottom: 1.5rem;
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
             }
 
             .content {
-                font-size: 1.05rem;
+                font-size: 0.95rem; /* Yazı boyutunu biraz daha küçülttük */
                 /* background-size değeri ile line-height aynı olmalı ki satırlar kaymasın */
-                line-height: 2rem; 
-                text-align: left; /* Mobilde iki yana yaslama bazen çirkin boşluklar yaratır, sola çektik */
+                line-height: 1.8rem; 
+                text-align: left; /* Mobilde daha okunaklı bir hizalama */
             }
             
             .wax-seal {
-                margin: 30px auto 0 auto;
+                width: 40px;
+                height: 40px;
+                margin: 25px auto 0 auto;
             }
         }
     </style>
