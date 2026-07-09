@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azra'ya...</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: radial-gradient(circle, #2b1055, #110326);
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Arka plan yıldız ve ışıltı efektleri */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+            background-size: 550px 550px, 350px 350px;
+            background-position: 0 0, 40px 60px;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+            perspective: 1000px;
+        }
+
+        /* Mektup Kağıdı Tasarımı */
+        .letter-paper {
+            background: #fdfbf7;
+            background-image: linear-gradient(#e1dcd6 1px, transparent 1px);
+            background-size: 100% 2.2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
+                        inset 0 0 20px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            padding: 50px 40px;
+            position: relative;
+            border: 1px solid #dcd6cd;
+            transform: rotate(-1deg);
+            transition: transform 0.5s ease;
+        }
+
+        .letter-paper:hover {
+            transform: rotate(0deg) scale(1.01);
+        }
+
+        /* Mektup Kenar Süsü */
+        .letter-paper::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            border: 1px dashed #c4b49e;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .heading {
+            font-size: 1.8rem;
+            color: #4a3728;
+            margin-bottom: 2rem;
+            font-weight: normal;
+            font-family: 'Playfair Display', 'Times New Roman', serif;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            font-size: 1.15rem;
+            line-height: 2.2rem;
+            color: #3d3126;
+            text-align: justify;
+            white-space: pre-line;
+        }
+
+        .heart-icon {
+            color: #ad3838;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+            font-size: 1.3rem;
+            vertical-align: middle;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* Küçük bir gül/çiçek veya mühür detayı */
+        .wax-seal {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #a82323, #701212);
+            border-radius: 50%;
+            margin: 40px auto 0 auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.2rem;
+            border: 2px solid #8f1d1d;
+        }
+
+        /* Mobil Cihazlar İçin Ayarlamalar */
+        @media (max-width: 480px) {
+            .letter-paper {
+                padding: 40px 20px;
+                background-size: 100% 2rem;
+            }
+            .heading {
+                font-size: 1.5rem;
+            }
+            .content {
+                font-size: 1rem;
+                line-height: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="letter-paper">
+            <h1 class="heading">Azra'ya...</h1>
+            <p class="content">
+                Azra, öncelikle özür dileyerek başlamak istiyorum konuşmayı tekrar okudum da fikirlerimdeki ve söylemlerimdeki hataları fark ettim.
+                
+                Özellikle "Sen istersen savunurum" demem bu kadar önemli bir değeri ve hassasiyeti yapay bir şeye indirgemek gibi oluyor özür dilerim tekrardan.
+                
+                Ayrıca ani bir işin çıkmışken seni darlamamda hatalıydı onun içinde özür dilerim.
+                
+                Bundan sonra bu konularda daha dikkatli olacağıma söz veriyorumm seni çok seviyorum <span class="heart-icon">🫶</span>
+            </p>
+            
+            <div class="wax-seal">❤</div>
+        </div>
+    </div>
+
+</body>
+</html>
